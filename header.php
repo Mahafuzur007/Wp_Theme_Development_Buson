@@ -9,9 +9,12 @@
 
     <link rel="manifest" href="site.webmanifest">
     <link rel="shortcut icon" type="image/x-icon" href="
+    
+
     <?php
     echo get_template_directory_uri() ?>/assets/img/favicon.ico">
     <?php wp_head(); ?>
+
 </head>
 
 <body <?php body_class(); ?>>
@@ -40,7 +43,7 @@
                                 <div class="header-info-left">
                                     <ul>
                                         <li><i class="fas fa-map-marker-alt"></i><?php the_field('header_address', 'option'); ?></li>
-                                        <li><i class="fas fa-envelope"></i><?php the_field('header_email', 'option'); ?></li>
+                                        <li><a href="mailto:<?php the_field('header_email', 'option'); ?>"><i class="fas fa-envelope"></i><?php the_field('header_email', 'option'); ?></a></li>
                                     </ul>
                                 </div>
                                 <div class="header-info-right">
@@ -64,7 +67,7 @@
                             <!-- Logo -->
                             <div class="col-xl-2 col-lg-1 col-md-1">
                                 <div class="logo">
-                                    <a href="index.html"><img src="<?php echo get_template_directory_uri() ?>/assets/img/logo/logo.png" alt=""></a>
+                                    <a href="<?php site_url(); ?>"><?php the_custom_logo(); ?></a>
                                 </div>
                             </div>
                             <div class="col-xl-10 col-lg-10 col-md-10">

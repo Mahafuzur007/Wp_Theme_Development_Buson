@@ -61,7 +61,7 @@ $footer_contact_title = get_field("footer_contact_title", "option");
                             foreach ($footer_contacts as $footer_contact) {
                             ?>
                                 <ul>
-                                    <li><a href="#"><?php echo $footer_contact['footer_contact_list']; ?></a></li>
+                                    <li><a href="tel:<?php echo $footer_contact['footer_contact_list']; ?>"> <?php echo $footer_contact['footer_contact_list']; ?> </a></li>
                                 </ul>
                             <?php
                             }

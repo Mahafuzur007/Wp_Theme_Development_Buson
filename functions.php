@@ -12,6 +12,25 @@ function buson_setup()
     register_nav_menus(array(
         'primary_menu' => __('Primary Menu', 'buson'),
     ));
+
+    /**
+     * Add support for core custom logo.
+     * 
+     */
+
+    $logo_width = 300;
+    $logo_height = 100;
+
+    add_theme_support(
+        'custom-logo',
+        array(
+            'height' => $logo_height,
+            'width' => $logo_width,
+            'flex-width' => true,
+            'flex-height' => true,
+            'unlink-homepage-logo' => true,
+        )
+    );
 }
 add_action("after_setup_theme", "buson_setup");
 function buson_setup_assets()

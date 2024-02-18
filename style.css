@@ -13,3 +13,10 @@ Tags: blog
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
+
+.page-not-found {
+  margin-bottom: 100px;
+  margin-top: 100px;
+  text-align: center;
+}
+

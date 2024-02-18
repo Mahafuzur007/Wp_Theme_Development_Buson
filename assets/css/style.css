@@ -2585,6 +2585,10 @@ hr {
   z-index: 1;
 }
 
+.main-header .main-menu ul li.current-menu-item a {
+  color: #ff656a;
+}
+
 .main-header .main-menu ul li a {
   color: #002e5b;
   font-weight: 500;

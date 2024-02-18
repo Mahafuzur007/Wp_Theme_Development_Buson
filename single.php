@@ -51,7 +51,7 @@ get_header();
                               </a>
                            </div>
                            <div class="detials">
-                              <p>Prev Post</p>
+                              <p><?php echo esc_html__('Prev Post', 'buson'); ?></p>
                               <a href="<?php echo $prev_link ?>">
                                  <h4><?php previous_post_link('%link', $prev_title) ?></h4>
                               </a>
@@ -68,7 +68,7 @@ get_header();
                            $next_post_thumb = get_the_post_thumbnail($next_post->ID, 'thumbnail');
                         ?>
                            <div class="detials">
-                              <p>Next Post</p>
+                              <p><?php echo esc_html__('Next Post', 'buson'); ?></p>
                               <h4><?php next_post_link('%link', $next_title) ?></h4>
                            </div>
                            <div class="arrow">
@@ -88,18 +88,29 @@ get_header();
             </div>
             <div class="blog-author">
                <div class="media align-items-center">
-                  <img src="<?php echo get_template_directory_uri(); ?>/assets/img/blog/author.png" alt="">
+
+                  <?php global $post;
+                  $author_id = $post->post_author;
+                  $author_name = get_the_author_meta('display_name', $author_id);
+                  $author_description = get_the_author_meta('user_description', $author_id);
+                  $author_avatar = get_avatar_url($author_id);
+                  ?>
+                  <img src="<?php echo  $author_avatar ?>" alt="<?php echo $author_name; ?>">
                   <div class="media-body">
                      <a href="#">
-                        <h4>Harvard milan</h4>
+                        <h4><?php echo $author_name; ?></h4>
                      </a>
-                     <p>Second divided from form fish beast made. Every of seas all gathered use saying you're, he
-                        our dominion twon Second divided from</p>
+                     <p><?php echo $author_description; ?></p>
                   </div>
                </div>
             </div>
             <div class="comments-area">
-               <h4>05 Comments</h4>
+               <?php
+               if (comments_open() || get_comments_number()) :
+                  comments_template();
+               endif;
+               ?>
+               <!-- <h4>05 Comments</h4>
                <div class="comment-list">
                   <div class="single-comment justify-content-between d-flex">
                      <div class="user justify-content-between d-flex">
@@ -177,7 +188,7 @@ get_header();
                         </div>
                      </div>
                   </div>
-               </div>
+               </div> -->
             </div>
             <div class="comment-form">
                <h4>Leave a Reply</h4>
