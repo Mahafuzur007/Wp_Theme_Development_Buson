@@ -33,8 +33,8 @@ get_header();
                                 </a>
                                 <?php the_excerpt(); ?>
                                 <ul class="blog-info-link">
-                                    <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
-                                    <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                                    <li><i class="fa fa-user"></i> <?php the_category(', '); ?></li>
+                                    <li><a href="#"><i class="fa fa-comments"></i> <?php echo get_comments_number(); ?> Comments</a></li>
                                 </ul>
                             </div>
                         </article>
@@ -67,7 +67,10 @@ get_header();
             </div>
             <div class="col-lg-4">
                 <div class="blog_right_sidebar">
-                    <aside class="single_sidebar_widget search_widget">
+                    <?php if (is_active_sidebar('main_sidebar')) {
+                        dynamic_sidebar('main_sidebar');
+                    } ?>
+                    <!-- <aside class="single_sidebar_widget search_widget">
                         <form action="#">
                             <div class="form-group">
                                 <div class="input-group mb-3">
@@ -239,7 +242,7 @@ get_header();
                             </div>
                             <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" type="submit">Subscribe</button>
                         </form>
-                    </aside>
+                    </aside> -->
                 </div>
             </div>
         </div>

@@ -36,47 +36,59 @@ get_header();
                <div class="navigation-area">
                   <div class="row">
                      <div class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
-                        <div class="thumb">
-                           <a href="#">
-                              <img class="img-fluid" src="assets/img/post/preview.png" alt="">
-                           </a>
-                        </div>
-                        <div class="arrow">
-                           <a href="#">
-                              <span class="lnr text-white ti-arrow-left"></span>
-                           </a>
-                        </div>
-                        <div class="detials">
-                           <p>Prev Post</p>
-                           <a href="#">
-                              <h4>Space The Final Frontier</h4>
-                           </a>
-                        </div>
+                        <?php
+                        if ($prev_post = get_previous_post()) {
+                           $prev_link = get_permalink($prev_post->ID);
+                           $prev_title = get_the_title($prev_post->ID);
+                           $prev_post_thumb = get_the_post_thumbnail($prev_post->ID, 'thumbnail');
+                        ?>
+                           <div class="thumb">
+                              <?php previous_post_link('%link', $prev_post_thumb) ?>
+                           </div>
+                           <div class="arrow">
+                              <a href="#">
+                                 <span class="lnr text-white ti-arrow-left"></span>
+                              </a>
+                           </div>
+                           <div class="detials">
+                              <p>Prev Post</p>
+                              <a href="<?php echo $prev_link ?>">
+                                 <h4><?php previous_post_link('%link', $prev_title) ?></h4>
+                              </a>
+                           </div>
+                        <?php
+                        }
+                        ?>
                      </div>
                      <div class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
-                        <div class="detials">
-                           <p>Next Post</p>
-                           <a href="#">
-                              <h4>Telescopes 101</h4>
-                           </a>
-                        </div>
-                        <div class="arrow">
-                           <a href="#">
-                              <span class="lnr text-white ti-arrow-right"></span>
-                           </a>
-                        </div>
-                        <div class="thumb">
-                           <a href="#">
-                              <img class="img-fluid" src="assets/img/post/next.png" alt="">
-                           </a>
-                        </div>
+                        <?php
+                        if ($next_post = get_next_post()) {
+                           $next_link = get_permalink($next_post->ID);
+                           $next_title = get_the_title($next_post->ID);
+                           $next_post_thumb = get_the_post_thumbnail($next_post->ID, 'thumbnail');
+                        ?>
+                           <div class="detials">
+                              <p>Next Post</p>
+                              <h4><?php next_post_link('%link', $next_title) ?></h4>
+                           </div>
+                           <div class="arrow">
+                              <a href="<?php echo $next_link ?>">
+                                 <span class="lnr text-white ti-arrow-right"></span>
+                              </a>
+                           </div>
+                           <div class="thumb">
+                              <?php next_post_link('%link', $next_post_thumb) ?>
+                           </div>
+                        <?php
+                        }
+                        ?>
                      </div>
                   </div>
                </div>
             </div>
             <div class="blog-author">
                <div class="media align-items-center">
-                  <img src="assets/img/blog/author.png" alt="">
+                  <img src="<?php echo get_template_directory_uri(); ?>/assets/img/blog/author.png" alt="">
                   <div class="media-body">
                      <a href="#">
                         <h4>Harvard milan</h4>
@@ -92,7 +104,7 @@ get_header();
                   <div class="single-comment justify-content-between d-flex">
                      <div class="user justify-content-between d-flex">
                         <div class="thumb">
-                           <img src="assets/img/comment/comment_1.png" alt="">
+                           <img src="<?php echo get_template_directory_uri(); ?>/assets/img/comment/comment_1.png" alt="">
                         </div>
                         <div class="desc">
                            <p class="comment">
@@ -118,7 +130,7 @@ get_header();
                   <div class="single-comment justify-content-between d-flex">
                      <div class="user justify-content-between d-flex">
                         <div class="thumb">
-                           <img src="assets/img/comment/comment_2.png" alt="">
+                           <img src="<?php echo get_template_directory_uri(); ?>/assets/img/comment/comment_2.png" alt="">
                         </div>
                         <div class="desc">
                            <p class="comment">
@@ -144,7 +156,7 @@ get_header();
                   <div class="single-comment justify-content-between d-flex">
                      <div class="user justify-content-between d-flex">
                         <div class="thumb">
-                           <img src="assets/img/comment/comment_3.png" alt="">
+                           <img src="<?php echo get_template_directory_uri(); ?>/assets/img/comment/comment_3.png" alt="">
                         </div>
                         <div class="desc">
                            <p class="comment">
@@ -200,7 +212,10 @@ get_header();
          </div>
          <div class="col-lg-4">
             <div class="blog_right_sidebar">
-               <aside class="single_sidebar_widget search_widget">
+               <?php if (is_active_sidebar('main_sidebar')) {
+                  dynamic_sidebar('main_sidebar');
+               } ?>
+               <!-- <aside class="single_sidebar_widget search_widget">
                   <form action="#">
                      <div class="form-group">
                         <div class="input-group mb-3">
@@ -257,7 +272,7 @@ get_header();
                <aside class="single_sidebar_widget popular_post_widget">
                   <h3 class="widget_title">Recent Post</h3>
                   <div class="media post_item">
-                     <img src="assets/img/post/post_1.png" alt="post">
+                     <img src="<?php echo get_template_directory_uri(); ?>/assets/img/post/post_1.png" alt="post">
                      <div class="media-body">
                         <a href="single-blog.html">
                            <h3>From life was you fish...</h3>
@@ -266,7 +281,7 @@ get_header();
                      </div>
                   </div>
                   <div class="media post_item">
-                     <img src="assets/img/post/post_2.png" alt="post">
+                     <img src="<?php echo get_template_directory_uri(); ?>/assets/img/post/post_2.png" alt="post">
                      <div class="media-body">
                         <a href="single-blog.html">
                            <h3>The Amazing Hubble</h3>
@@ -275,7 +290,7 @@ get_header();
                      </div>
                   </div>
                   <div class="media post_item">
-                     <img src="assets/img/post/post_3.png" alt="post">
+                     <img src="<?php echo get_template_directory_uri(); ?>/assets/img/post/post_3.png" alt="post">
                      <div class="media-body">
                         <a href="single-blog.html">
                            <h3>Astronomy Or Astrology</h3>
@@ -284,7 +299,7 @@ get_header();
                      </div>
                   </div>
                   <div class="media post_item">
-                     <img src="assets/img/post/post_4.png" alt="post">
+                     <img src="<?php echo get_template_directory_uri(); ?>/assets/img/post/post_4.png" alt="post">
                      <div class="media-body">
                         <a href="single-blog.html">
                            <h3>Asteroids telescope</h3>
@@ -327,32 +342,32 @@ get_header();
                   <ul class="instagram_row flex-wrap">
                      <li>
                         <a href="#">
-                           <img class="img-fluid" src="assets/img/post/post_5.png" alt="">
+                           <img class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/assets/img/post/post_5.png" alt="">
                         </a>
                      </li>
                      <li>
                         <a href="#">
-                           <img class="img-fluid" src="assets/img/post/post_6.png" alt="">
+                           <img class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/assets/img/post/post_6.png" alt="">
                         </a>
                      </li>
                      <li>
                         <a href="#">
-                           <img class="img-fluid" src="assets/img/post/post_7.png" alt="">
+                           <img class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/assets/img/post/post_7.png" alt="">
                         </a>
                      </li>
                      <li>
                         <a href="#">
-                           <img class="img-fluid" src="assets/img/post/post_8.png" alt="">
+                           <img class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/assets/img/post/post_8.png" alt="">
                         </a>
                      </li>
                      <li>
                         <a href="#">
-                           <img class="img-fluid" src="assets/img/post/post_9.png" alt="">
+                           <img class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/assets/img/post/post_9.png" alt="">
                         </a>
                      </li>
                      <li>
                         <a href="#">
-                           <img class="img-fluid" src="assets/img/post/post_10.png" alt="">
+                           <img class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/assets/img/post/post_10.png" alt="">
                         </a>
                      </li>
                   </ul>
@@ -365,7 +380,7 @@ get_header();
                      </div>
                      <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" type="submit">Subscribe</button>
                   </form>
-               </aside>
+               </aside> -->
             </div>
          </div>
       </div>

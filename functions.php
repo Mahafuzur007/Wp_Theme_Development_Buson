@@ -340,6 +340,17 @@ function buson_sidebar()
         'before_title'  => '<h4>',
         'after_title'   => '</h4>',
     ));
+
+    //Main sidebar
+    register_sidebar(array(
+        'name'          => __('Main Sidebar', 'buson'),
+        'id'            => 'main_sidebar',
+        'description'   => __('Sidebars in this area will be shown on blog pages.', 'buson'),
+        'before_widget' => '<li id="%1$s" class="widget %2$s">',
+        'after_widget'  => '</li>',
+        'before_title'  => '<h4>',
+        'after_title'   => '</h4>',
+    ));
 }
 add_action('widgets_init', 'buson_sidebar');
 
